@@ -1,0 +1,52 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+.navbar-brand > img {
+    height: 100%;
+    width: auto;
+}
+
+.text-container {
+    position: relative;
+}
+
+.background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8));
+    backdrop-filter: blur(10px);
+    z-index: -1;
+}
+
+.content-container {
+    position: relative;
+    padding: 100px 0; /* Adjust the padding to control spacing */
+    color: white; /* Set text color for better contrast */
+    text-align: center;
+}
+
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+.logo-image {
+    max-height: 45px; /* Adjust the max-height value as needed */
+    width: auto;
+}

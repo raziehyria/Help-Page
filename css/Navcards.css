@@ -1,0 +1,68 @@
+﻿.navappcards-container {
+    padding-top: 100px; /* Adjust this value as needed */
+}
+
+.svg-background-card {
+    background-image: url('/Images/icons8-get-help.svg');
+    background-size: cover; /* Adjust this to fit your design */
+    background-repeat: no-repeat;
+    background-position: center;
+    /* Other card styles as needed */
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .card img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.3s;
+    }
+
+    .card:hover img {
+        transform: scale(1.05);
+    }
+
+    .card button {
+        background-color: #007bff;
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        padding: 8px 16px;
+        cursor: pointer;
+        overflow: hidden;
+        position: relative;
+        z-index: 0;
+        transition: transform 0.3s;
+    }
+
+        .card button::after {
+            content: "";
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            z-index: -1;
+        }
+
+        .card button:hover {
+            transform: scale(1.05);
+        }
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}

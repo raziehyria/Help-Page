@@ -1,0 +1,184 @@
+﻿body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #fff;
+    color: #333;
+    padding-bottom: 60px; /* Add padding to the bottom of the body to create space for the footer */
+    box-sizing: border-box; /* Include padding in the overall height of the body */
+}
+
+/* general style for wholecontainer of colums*/
+
+/* */
+
+.container1 {
+    font-size: 16px;
+    column-width: auto;
+    margin: 20px auto;
+    padding: 10px 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#appguide {
+    justify-content: space-between;
+}
+#left-column {
+    margin-top: 20px;
+    width: calc(33% - 10px); /* Adjust the width and gutter value as needed */
+    max-width: 100%;
+    border-right: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+
+#middle-column {
+    margin-top: 20px;
+    flex-grow: 1;
+    max-width: 100%;
+    padding: 0 20px;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+#overview-box > div > ul {
+    border-left: 2px solid #ddd;
+    padding-left: 15px;
+    margin-left: 5px;
+    margin-bottom: 2rem;
+    list-style-position: initial;
+    list-style-image: initial;
+    list-style-type: none; 
+}
+
+#right-column {
+    margin-top: 20px;
+    width: calc(33% - 10px); /* Adjust the width and gutter value as needed */
+    max-width: 100%;
+    padding-left: 20px;
+    border-right: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+}
+
+@media (min-width: 768px) {
+  #left-column {
+    width: 200px;
+    max-width: 25%; /* Adjust the value as needed */
+    margin-bottom: 0;
+  }
+}
+
+#search-box {
+  display: flex;
+  left: 20px;
+  margin-top: 20px;
+  margin-bottom:20px;
+}
+
+#search-box input {
+  width: 200%;
+  max-width: max-content;
+  padding: 1px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  outline: none;
+  text-align: center;
+}
+
+#recently-searched h3 {
+  margin-top: 0;
+}
+
+#recently-searched ul {
+  list-style: none;
+  padding: 0;
+}
+
+#recently-searched li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+#recently-searched li img {
+  height: 30px;
+  margin-right: 10px;
+}
+
+#middle-column {
+  flex-grow: 1;
+  max-width: 100%;
+  padding: 0 20px;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+  #middle-column {
+    max-width: 75%; /* Adjust the value as needed */
+    margin-bottom: 0;
+  }
+}
+
+.section {
+  margin-bottom: 40px;
+}
+
+#overview-section,
+#details-section,
+#faq-section {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 2px;
+}
+
+#overview-section h2,
+#details-section h2,
+#faq-section h2 {
+  margin-top: 10px;
+}
+
+#overview-section p,
+#details-section p,
+#faq-section p {
+  margin-bottom: 0;
+}
+
+#right-column {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 20px;
+    border-right: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+}
+
+@media (min-width: 768px) {
+  #right-column {
+    width: 200px;
+    max-width: 25%; /* Adjust the value as needed */
+  }
+}
+
+#overview-box {
+  top: 140px;
+}
+
+#overview-box h3 {
+  margin-top: 0;
+}
+
+#overview-box ul {
+  list-style: none;
+  padding: 0;
+}
+
+#overview-box li {
+  margin-bottom: 10px;
+}

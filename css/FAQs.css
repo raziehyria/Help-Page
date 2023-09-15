@@ -1,0 +1,48 @@
+﻿.container h2 {
+    color: #000000;
+    text-align: center;
+
+   
+}
+
+.question {
+    padding: 10px;
+}
+
+details {
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 10px;
+}
+
+summary {
+    padding: .5em 1.3rem;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    transition: height 1s ease;
+}
+
+    summary::-webkit-details-marker {
+        display: none;
+    }
+
+    summary:after {
+        content: "\002B";
+    }
+
+details[open] summary {
+    border-bottom: 1px solid #aaa;
+    
+    margin-bottom: .5em;
+}
+
+    details[open] summary:after {
+        content: "\00D7";
+    }
+
+details[open] div {
+    padding: .8em 1em;
+}
