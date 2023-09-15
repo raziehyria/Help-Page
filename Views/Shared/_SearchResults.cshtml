@@ -1,0 +1,18 @@
+﻿@model List<ViewModels.ApplicationVM>
+
+@if (Model != null && Model.Count > 0)
+{
+    <div class="search-results">
+        <h3>search results</h3>
+        <ul>
+            @foreach (var app in Model)
+            {
+                <li><a href="/AppGuides/Details/@app.Id">@app.Name</a></li>
+            }
+        </ul>
+    </div>
+}
+else
+{
+    <div class="no-results">No results found.</div>
+}

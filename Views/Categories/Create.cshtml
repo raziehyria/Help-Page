@@ -1,0 +1,50 @@
+﻿@model ViewModels.CategoryVM
+
+
+<h1>Create Application FOrm</h1>
+
+@using (Html.BeginForm("Create", "Categories", FormMethod.Post, new { @id = "createForm" }))
+{
+    @Html.AntiForgeryToken()
+    ;
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name)
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", required = true })
+        @Html.ValidationMessageFor(model => model.Name)
+
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Create Entry" class="btn btn-primary" />
+    </div>
+}
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            // Handle form submission in the popup
+            $(document).on('submit', '#createForm', function (e) {
+                e.preventDefault();
+
+                var form = $(this);
+                var formData = form.serialize();
+
+                $.ajax({
+                    url: form.attr('action'),
+                    type: 'POST',
+                    data: formData,
+                    success: function () {
+                        // Optionally show a success message
+                        // You can use a library like 'toastr' to display notifications
+                        // Example: toastr.success('Application created successfully!');
+                    },
+                    error: function (xhr) {
+                        // Optionally show an error message
+                        // Example: toastr.error('Error creating application: ' + xhr.statusText);
+                    }
+                });
+            });
+        });
+    </script>
+}

@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Help Page</title>
+    <!-- Add this script tag to include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/UserHelpPageTemplate.styles.css" asp-append-version="true" />
+    
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                @* added the holtec logo into the nav bar*@
+                <a class="navbar-brand"><img src="~/images/logo.png" class="logo-image"></a>
+                @*<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Holtec International</a> *@        
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>       
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="FAQ">Faqs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                        </li>
+                        @if (User.Identity.IsAuthenticated)// check whether the user is authenticated or not
+                        {
+                            if (User.IsInRole("Admin") || User.IsInRole("Supervisor"))//Check wether the user is in that role
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Application" asp-action="AppTable">App Directory</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Categories" asp-action="CategoriesTable">Category Directory</a>
+                                </li>
+                            }
+                        }
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                App Guides
+                            </a>
+                            @*later on we will populate the dropdown feilds with a db reference*@
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="/Home/AppsByCategory?category=3">Corporate</a>
+                                <a class="dropdown-item" href="/Home/AppsByCategory?category=2">Human Resources</a>
+                                <a class="dropdown-item" href="/Home/AppsByCategory?category=1">Quality Assurance</a>
+                                <a class="dropdown-item" href="/Home/AppsByCategory?category=7">Manufacturing & Inventory</a>
+                                <a class="dropdown-item" href="/Home/AppsByCategory?category=10">Procurement</a>
+                                <a class="dropdown-item" href="/Home/AppsByCategory?category=8">Engineering & Design</a>
+                                <a class="dropdown-item" href="/Home/AppsByCategory?category=4">Project Management</a>
+                                <a class="dropdown-item" href="/Home/AppsByCategory?category=12">Sales</a>
+                                <a class="dropdown-item" href="/Home/AppsByCategory?category=9">Safety</a>
+                                <a class="dropdown-item" href="/Home/AppsByCategory?category=6">Site Services</a>
+                                <a class="dropdown-item" href="/Home/AppsByCategory?category=11">Decommissioning</a>
+                                <a class="dropdown-item" href="/Home/AppsByCategory?category=5">Misc</a>
+                            </div>
+                        </li>
+
+                        @if (User.Identity.IsAuthenticated)// check whether the user is authenticated or not
+                        {
+                            if (User.IsInRole("Supervisor"))//Check wether the user is in that role
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Advanced Controls
+                                    </a>
+                                    @*later on we will populate the dropdown feilds with a db reference*@
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <a class="dropdown-item" asp-area="" asp-controller="RoleManager" asp-action="Index">Manage Roles</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="UserRoles" asp-action="Index">Manage Users</a>                                      
+                                    </div>
+                                </li>
+                            }
+                        }
+                        
+                        @* using ms-auto to adjust item to the left*@
+                    </ul>
+                    <ul ul class="navbar-nav ms-auto">                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://appserver.holtec.com/">Back to Appserver</a>
+                        </li>
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>               
+            </div>
+        </nav>
+        <div id="breadcrumb" class="breadcrumb">
+            <div class="container">
+                <a href="/">Home</a>
+            </div>
+        </div>
+    </header>
+    <div class="container-fluid">
+        <main role="main" class="pb-3">
+            @Html.Partial("_Alerts")
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - Holtec International Inc. - <a asp-area="" asp-controller="Home" asp-action="About">About</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            //$('#navbarDropdownMenuLink').click(function () {
+            //    // Load the create form using AJAX
+            //    $.get('@Url.Action("Index", "AppGuides")'                 
+            //    };
+            // Make the dropdown toggle/expand on cursor hover
+            $('.dropdown').hover(function () {
+                $(this).find('.dropdown-menu').first().stop(true, true).slideDown();
+            }, function () {
+                $(this).find('.dropdown-menu').first().stop(true, true).slideUp();
+            });
+
+            // Prevent the dropdown from closing when clicking on links
+            $('.dropdown-menu a').click(function (e) {
+                e.stopPropagation();
+            });
+        });
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+

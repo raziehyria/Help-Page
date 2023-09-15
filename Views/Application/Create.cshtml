@@ -1,0 +1,103 @@
+﻿@model ViewModels.ApplicationVM
+
+
+<h1>Create Application FOrm</h1>
+
+@using (Html.BeginForm("Create", "Application", FormMethod.Post, new { @id = "createForm" }))
+{          
+    @Html.AntiForgeryToken();
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name)
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", required = true })
+        @Html.ValidationMessageFor(model => model.Name)
+        
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ShortDescription)
+        @Html.TextBoxFor(model => model.ShortDescription, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.ShortDescription)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.LongDescription)
+        @Html.TextBoxFor(model => model.LongDescription, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.LongDescription)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Modules)
+        @Html.TextBoxFor(model => model.Modules, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Modules)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.UserGroups)
+        @Html.TextBoxFor(model => model.UserGroups, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.UserGroups)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FAQ)
+        @Html.TextBoxFor(model => model.FAQ, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.FAQ)       
+    </div>
+
+    <div class="form-group">
+
+        @Html.LabelFor(model => model.Category)
+        @Html.TextBoxFor(model => model.Category, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Category)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PrimarySupportContact)
+        @Html.TextBoxFor(model => model.PrimarySupportContact, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.PrimarySupportContact)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SecondarySupportContact)
+        @Html.TextBoxFor(model => model.SecondarySupportContact, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.SecondarySupportContact)
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Create Entry" class="btn btn-primary" />
+    </div>      
+ }
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            // Handle form submission in the popup
+            $(document).on('submit', '#createForm', function (e) {
+                e.preventDefault();
+
+                var form = $(this);
+                var formData = form.serialize();
+
+                $.ajax({
+                    url: form.attr('action'),
+                    type: 'POST',
+                    data: formData,
+                    success: function () {                                            
+                        // Optionally show a success message
+                        // You can use a library like 'toastr' to display notifications
+                        // Example: toastr.success('Application created successfully!');
+                        
+                    },
+                    error: function (xhr) {
+                        // Optionally show an error message
+                        // Example: toastr.error('Error creating application: ' + xhr.statusText);
+                    }
+                });
+            });
+        });
+    </script>
+}
+
+
+
+

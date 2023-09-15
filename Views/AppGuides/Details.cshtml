@@ -1,0 +1,92 @@
+﻿@model ViewModels.ApplicationVM
+
+<link rel="stylesheet" href="~/css/AppGuideStyle.css">
+<div class="container1 px-1" id="appguide">
+    <div class="row" id="justthecolumns">
+        <div class="col" id="left-column">
+            <div id="search-box">
+                <input type="text" placeholder="Search" onfocus="clearSearchText()" id="search-input">
+            </div>
+
+
+
+            <div id="recently-searched">
+                <span class="searchlabel"> Recent Searchs</span>
+                <ul>
+                    <li><img src="~/Images/ACPL_Logo.png" alt="App 1"> App 1</li>
+                    <li><img src="~/Images/ADPLOGO.png" alt="App 2"> App 2</li>
+                    <li><img src="~/Images/DTF.png" alt="App 3"> App 3</li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="col" id="middle-column">
+            <h3 class="my-5">
+                @Model.Name
+
+            </h3>
+            <div class="row">
+                <div class="col" id="overview-section">
+                    <h2>Overview</h2>
+                    <h4> @Model.ShortDescription)</h4>
+                    <p>This is the overview section.</p>
+                </div>
+                <div class="row">
+                    <div class="col" id="details-section">
+                        <h2>More Details</h2>
+                        <p> @Model.LongDescription)</p>
+                        <h3>@Model.UserGroups)</h3>
+                        <h3>@Model.Modules)</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col" id="moredetails-section">
+                    <h2>More Details</h2>
+                    <h3>@Model.UserGroups)</h3>
+                    <h3>@Model.Modules)</h3>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col" id="faq-section">
+                    <h2>FAQs</h2>
+                    <p>This is the FAQs section.</p>
+                    <p>@Model.FAQ)</p>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col" id="right-column">
+            <div id="overview-box">
+                <h3>Article Outline</h3>
+                <div>
+                    <ul>
+                        <li>Topic 1</li>
+                        <li>Topic 2 </li>
+                        <li>Topic 3</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+
+
+
+<script>
+    function clearSearchText() {
+        var searchInput = document.getElementById('search-input');
+        searchInput.placeholder = 'Search';
+    }
+</script>

@@ -1,0 +1,115 @@
+﻿@model IEnumerable<ViewModels.ApplicationVM>
+
+
+<h1>App Table <button id="createNewButton" class="btn btn-primary">Create New</button></h1>
+
+<div class="table" id="mainTable">
+    <table class="table">
+        <!-- Table header content -->
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ShortDescription)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LongDescription)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Modules)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserGroups)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FAQ)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Category)
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ShortDescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LongDescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Modules)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserGroups)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FAQ)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category.Name)
+                    </td>
+                    <td>
+
+                        <a asp-controller="AppGuides" asp-action="Index" asp-route-id="@item.Id" class="btn btn-outline-primary">Details</a>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-secondary"> Edit </a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Create Modal -->
+<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createModalLabel">Create New Application</h5>
+                <button type="button" id="ClosePage" class="close" data-dismiss="modal" aria-label="Close">              
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- The form will be loaded here dynamically -->
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+   <script>
+        $(document).ready(function () {
+            // Show the create form in the popup when the 'Create New' button is clicked
+            $('#createNewButton').click(function () {                
+                // Load the create form using AJAX
+                $.get('@Url.Action("Create", "Application")', function (data) {
+                    $('.modal-body').html(data);
+                    $('#createModal').modal('show');
+                    console.log(data);
+                });
+               
+            });
+            $('#ClosePage').click(function () {
+                // Close the popup
+                $('#createModal').modal('hide');
+            });
+     });
+  </script>
+}

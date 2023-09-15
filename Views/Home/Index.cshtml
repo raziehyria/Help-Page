@@ -1,0 +1,109 @@
+﻿<link rel="stylesheet" href="/css/Navcards.css" />
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-container">
+    <div class="background-overlay"></div>
+    <div class="text-center content-container">
+        <h1 class="display-3">Hi, How can we help?</h1>
+        <div> <partial name="_Searchbox" /></div>
+    </div>
+</div>
+<div class="navappcards-container">
+    <div class="container">
+        <div class="row">
+            
+            <!-- First card -->
+            <div class="col-md">
+                <div class="card mb-5">
+                    <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                        <img class="svg-inject img-fluid card-img" src="/Images/application.png" />
+                        <a href="#!">
+                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Explore</h5>
+                        <p class="card-text">
+                            Some quick example text to build on the card title and make up the bulk of the card's
+                            content.
+                        </p>
+                        <a href="#!" class="btn btn-primary">Button</a>
+                    </div>
+                </div>
+            </div>
+            <!-- first Card end -->
+
+            <!-- Second Card  -->
+            <div class="col-md">
+                <div class="card mb-5">
+                    <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                        <img class="svg-inject img-fluid card-img" src="/Images/icons8-get-help.svg" />
+                        <a href="#!">
+                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Faq's'</h5>
+                        <p class="card-text">
+                            Some quick example text to build on the card title and make up the bulk of the card's
+                            content.
+                        </p>
+                        <a href="#!" class="btn btn-primary">Button</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Second Card end -->
+
+            <!-- Third Card  -->
+            <div class="col-md">
+                <div class="card mb-5">
+                    <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                        <img class="svg-inject img-fluid card-img" src="/Images/search.gif" />
+                        <a href="#!">
+                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Seach</h5>
+                        <p class="card-text">
+                            Some quick example text to build on the card title and make up the bulk of the card's
+                            content.
+                        </p>
+                        <a href="#!" class="btn btn-primary">Button</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Third Card end -->
+        </div>
+    </div>
+    <!-- <div> <partial name="_NavAppCards" /> </div>-->
+</div>
+
+
+<!--https://localhost:7139/AppGuides/Index-->
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $("#searchQueryInput").on("input", function () {
+                var query = $(this).val();
+                if (query.length > 0) {
+                    $.ajax({
+                        type: "GET",
+                        url: "/Home/Search",
+                        data: { query: query },
+                        success: function (data) {
+                            $("#searchResultsContainer").html(data);
+                        },
+                        error: function () {
+                            console.log("Error fetching search results.");
+                        }
+                    });
+                } else {
+                    $("#searchResultsContainer").empty();
+                }
+            });
+        });
+    </script>
+}

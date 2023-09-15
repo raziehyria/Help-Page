@@ -1,0 +1,26 @@
+﻿@model ViewModels.ApplicationVM
+
+<div class="card">
+    <div class="card app-card">
+        <img src="~/Images/questionmark.gif" class="card-img-top">
+        <div class="card-body">
+            <h4 class="d-grid">
+                <a 
+                   class="btn btn-secondary"
+                   asp-controller="Home"
+                   asp-action="Index"> </a>
+            </h4>
+            <div class="d-flex justify-content-between mt-2">
+                <h2 class="text-start">
+                    <a asp-controller="AppGuides"
+                       asp-action="Details"
+                       asp-route-id="@Model.Id"
+                       class="pie-link">@Model.Name</a>
+                   </a>
+                </h2>               
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,64 @@
+﻿@model ViewModels.ApplicationVM
+
+<h1>Edit Application</h1>
+
+@using (Html.BeginForm("Edit", "Application", FormMethod.Post, new { @id = "EditForm" }))
+{
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ShortDescription"></label>
+        <textarea asp-for="ShortDescription" class="form-control"></textarea>
+        <span asp-validation-for="ShortDescription" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LongDescription"></label>
+        <input asp-for="LongDescription" class="form-control" />
+        <span asp-validation-for="LongDescription" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Modules"></label>
+        <input asp-for="Modules" class="form-control" />
+        <span asp-validation-for="Modules" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="UserGroups"></label>
+        <input asp-for="UserGroups" class="form-control" />
+        <span asp-validation-for="UserGroups" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="FAQ"></label>
+        <input asp-for="FAQ" class="form-control" />
+        <span asp-validation-for="FAQ" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Category"></label>
+        <input asp-for="Category" class="form-control" />
+        <span asp-validation-for="Category" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">     
+        <label asp-for="PrimarySupportContact"></label>
+        <input asp-for="PrimarySupportContact" class="form-control" />
+        <span asp-validation-for="PrimarySupportContact" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SecondarySupportContact"></label>
+        <input asp-for="SecondarySupportContact" class="form-control" />
+        <span asp-validation-for="SecondarySupportContact" class="text-danger"></span>
+    </div>   
+
+    <button type="submit" class="btn btn-primary">Save</button>
+}

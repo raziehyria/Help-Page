@@ -1,0 +1,87 @@
+﻿@model IEnumerable<ViewModels.CategoryVM>
+
+@{
+    ViewData["Title"] = "Categories";
+}
+
+<link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#table').DataTable();
+    });
+</script>
+<h1>Categories Table</h1>
+
+<button id="createNewButton" class="btn btn-primary">Create New</button>
+
+<div class="table-responsive" id="mainTable">
+    <table class="table">
+        <!-- Table header content -->
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>               
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>                   
+                    <td>                      
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-secondary"> Edit </a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Create Modal -->
+<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createModalLabel">Create New Category</h5>
+                <button type="button" id="ClosePage" class="close" data-dismiss="modal" aria-label="Close">              
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- The form will be loaded here dynamically -->
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+   <script>
+        $(document).ready(function () {
+            // Show the create form in the popup when the 'Create New' button is clicked
+            $('#createNewButton').click(function () {                
+                // Load the create form using AJAX
+                $.get('@Url.Action("Create", "Categories")', function (data) {
+                    $('.modal-body').html(data);
+                    $('#createModal').modal('show');
+                });
+            });
+            $('#ClosePage').click(function () {
+                // Close the popup
+                $('#createModal').modal('hide');
+            });
+     });
+  </script>
+}
